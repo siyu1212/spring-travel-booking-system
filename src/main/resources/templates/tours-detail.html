@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tour Details - Travel Booking</title>
+    <!-- Google Fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/assets/css/style-starter.css}">
+</head>
+
+<body>
+<!-- Header -->
+<div th:replace="~{header :: header}"></div>
+<!-- //Header -->
+
+<!-- Banner Section -->
+<section>
+    <img th:src="@{'/assets/images/' + ${tour.imageUrl}}" alt="Tour Banner"
+         style="width: 100%; height: 400px; object-fit: cover;">
+</section>
+
+<!-- Tour Details Section -->
+<section class="container py-5">
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col-lg-8">
+            <h2 th:text="${tour.title}">Tour Title</h2>
+            <p><strong>Country:</strong> <span th:text="${tour.country}">Country</span></p>
+            <p><strong>City:</strong> <span th:text="${tour.city}">City</span></p>
+            <p><strong>Attraction:</strong> <span th:text="${tour.attraction}">Attraction</span></p>
+            <p><strong>Duration:</strong> <span th:text="${tour.durationDays}">X</span> Day(s)</p>
+            <h4 class="mt-4">Description</h4>
+            <p th:text="${tour.description}">Tour description goes here.</p>
+        </div>
+
+        <!-- Right Column (Pricing Box) -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm p-4">
+                <h4>Trip Information</h4>
+                <hr>
+                <p><strong>Tour Code:</strong> <span th:text="'PKG' + ${tour.packageId}">PKG001</span></p>
+                <p><strong>Rating:</strong> <span th:text="${tour.rating}">4.5</span> ★</p>
+                <p><strong>Price:</strong> <span th:text="'$' + ${tour.price}">$0.00</span></p>
+                <a th:href="@{'/booking/confirm/' + ${tour.packageId}}"
+                   class="btn btn-style mt-2 d-block text-center">Book Now</a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<div th:replace="~{footer :: footer}"></div>
+<!-- //Footer -->
+
+<!-- Scroll Top Button -->
+<button onclick="topFunction()" id="movetop" title="Go to top">
+    <span class="fas fa-level-up-alt" aria-hidden="true"></span>
+</button>
+
+<!-- Scripts -->
+<script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js/theme-change.js}"></script>
+<script>
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        const btn = document.getElementById("movetop");
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+    $(".navbar-toggler").on("click", function () {
+        $("body").toggleClass("noscroll");
+    });
+
+    $(window).on("scroll", function () {
+        const scroll = $(window).scrollTop();
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+</script>
+</body>
+</html>

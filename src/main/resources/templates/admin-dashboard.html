@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Travel Booking</title>
+
+    <!-- Fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/assets/css/style-starter.css}">
+</head>
+
+<body>
+
+<!-- Header -->
+<div th:replace="~{header :: header}"></div>
+
+<section class="w3l-contact-main py-5">
+    <div class="container py-lg-5">
+        <div class="title-main text-center mx-auto mb-5" style="max-width:600px;">
+            <h3 class="title-style">Admin Dashboard</h3>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="row text-center mb-5">
+            <div class="col-md-4 mb-4">
+                <div class="card p-4 shadow">
+                    <h5>Total Bookings</h5>
+                    <h2 th:text="${totalBookings}">0</h2>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card p-4 shadow">
+                    <h5>Total Revenue</h5>
+                    <h2>$<span th:text="${totalRevenue}">0.00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card p-4 shadow">
+                    <h5>Top Destination</h5>
+                    <h2 th:text="${topDestination}">-</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest Bookings Table -->
+        <div class="table-responsive">
+            <h4 class="mb-3">Latest 5 Bookings</h4>
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Date</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Tour Title</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="b : ${topBookings}">
+                    <td th:text="${b.booking_id}">1</td>
+                    <td th:text="${#dates.format(b.booking_date, 'yyyy-MM-dd')}">2025-04-10</td>
+                    <td th:text="${b.first_name}">John</td>
+                    <td th:text="${b.last_name}">Doe</td>
+                    <td th:text="${b.tour_title}">Tour Name</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Back Button -->
+        <div class="mt-4 text-center">
+            <a href="/" class="btn btn-style btn-primary">Back to Home</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<div th:replace="~{footer :: footer}"></div>
+
+<!-- JS Scripts -->
+<!--<script src="assets/js/jquery-3.3.1.min.js"></script>-->
+<!--<script src="assets/js/bootstrap.min.js"></script>-->
+<!--<script src="assets/js/theme-change.js"></script>-->
+<script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js/theme-change.js}"></script>
+
+<script>
+    window.onscroll = function () {
+        document.getElementById("movetop").style.display =
+            (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? "block" : "none";
+    };
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+    $(".navbar-toggler").on("click", function () {
+        $("body").toggleClass("noscroll");
+    });
+
+    $(window).on("scroll", function () {
+        $("#site-header").toggleClass("nav-fixed", $(this).scrollTop() >= 80);
+    });
+</script>
+
+</body>
+</html>

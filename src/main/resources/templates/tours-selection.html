@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tours - Travel Category Bootstrap Responsive Website Template - Tours : W3Layouts</title>
+    <!-- Google fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" th:href="@{/assets/css/style-starter.css}">
+</head>
+
+<body>
+    <!-- header -->
+    <div th:replace="~{header :: header}"></div>
+    <!-- //header -->
+    <!-- booking form section -->
+    <section class="w3l-form-main py-5" id="book">
+        <div class="container py-lg-5 py-md-4 py-2">
+            <form action="/tours/selection" method="get" class="form-styles">
+                <!-- Date picker (no validation, just UI) -->
+                <div>
+                    <label class="form-label">Date from:</label>
+                    <input type="date" name="date">
+                </div>
+
+                <!-- City Filter -->
+                <div>
+                    <label class="form-label">City:</label>
+                    <span class="input-group-btn">
+                    <select class="btn btn-default" name="city">
+                        <option selected="">Select City</option>
+                        <option>Tokyo</option>
+                        <option>Melbourne</option>
+                        <option>Skaftafell</option>
+                        <option>Gangwon-do</option>
+                        <option>Paris</option>
+                        <option>Singapore</option>
+                        <option>London</option>
+                        <option>Zurich</option>
+                    </select>
+                </span>
+                </div>
+
+                <!-- Attraction Filter -->
+                <div>
+                    <label class="form-label">Attraction:</label>
+                    <span class="input-group-btn">
+                    <select class="btn btn-default" name="attraction">
+                        <option selected="">Select Attraction</option>
+                        <option>Mount Fuji</option>
+                        <option>Brighton Bathing Boxes, Phillip Island</option>
+                        <option>Vatnajökull Glacier</option>
+                        <option>Eobi Ice Valley</option>
+                        <option>Disneyland Paris</option>
+                        <option>Night Safari</option>
+                        <option>London Eye</option>
+                        <option>Swiss Countryside</option>
+                    </select>
+                </span>
+                </div>
+
+                <button class="btn btn-style" type="submit">Find Tour</button>
+            </form>
+        </div>
+    </section>
+    <!-- //booking form section -->
+
+<!-- Tours Grid -->
+<section class="w3l-placesblock2 py-5">
+    <div class="container py-lg-5 py-md-4 py-2">
+        <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:600px;">
+            <p>Choose your tour</p>
+            <h3 class="title-style">Available Tour Packages</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 mb-4" th:each="tour : ${tours}">
+                <div class="grids5-info">
+                    <a th:href="@{'/tours/detail/' + ${tour.packageId}}" class="place-image d-block zoom">
+                        <img th:src="@{'/assets/images/' + ${tour.imageUrl}}" alt="tour image" class="img-fluid radius-image" />
+                            <div class="image-overlay">
+                                <h4 th:text="${tour.title}">Tour Title</h4>
+                                <p th:text="${tour.city}">City Name</p>
+                            </div>
+                            <div class="iconic-plus">
+                                <p th:text="${tour.rating} + ' ★ | $' + ${tour.price}">Rating | Price</p>
+                            </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //Tours Grid -->
+
+
+<!-- footer -->
+<div th:replace="~{footer :: footer}"></div>
+<!-- //footer -->
+
+<button onclick="topFunction()" id="movetop" title="Go to top">
+    <span class="fas fa-level-up-alt" aria-hidden="true"></span>
+</button>
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+    <script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/js/theme-change.js}"></script>
+<script>
+    $(window).on("scroll", function () {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function () {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function () {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $('.navbar-toggler').click(function () {
+            $('body').toggleClass('noscroll');
+        })
+    });
+</script>
+<script src="assets/js/bootstrap.min.js"></script>
+</body>
+
+</html>

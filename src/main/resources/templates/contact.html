@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tours - Travel Category Bootstrap Responsive Website Template - Contact Us : W3Layouts</title>
+    <!-- Google fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="assets/css/style-starter.css">
+    <!-- ✅ Add this -->
+    <style>
+        .toast-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #28a745;
+            color: black;
+            font-weight: bold;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            z-index: 9999;
+            opacity: 0.95;
+            animation: fadeOut 5s forwards;
+        }
+        .toast-message p {
+            color: black;
+            font-weight: bold;
+            margin: 0;
+        }
+        .toast-message.error {
+            background: #dc3545;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 0.95; }
+            80% { opacity: 0.95; }
+            100% { opacity: 0; display: none; }
+        }
+    </style>
+</head>
+
+<body>
+<!-- header -->
+    <div th:replace="~{header :: header}"></div>
+<!-- //header -->
+
+
+<!-- inner banner -->
+    <section class="inner-banner py-sm-5 py-4">
+        <div class="w3l-breadcrumb pt-5 pb-4">
+            <div class="container py-xl-5 py-lg-4">
+                <h4 class="inner-text-title font-weight-bold pt-5">Contact Us</h4>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><i class="fas fa-angle-right mx-2"></i>Contact</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //inner banner -->
+
+    <!-- contact -->
+    <section class="w3l-contact-main py-5" id="contact">
+        <div class="container py-lg-5 py-md-4 py-2">
+            <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:600px;">
+                <p>Contact Us</p>
+                <h3 class="title-style">Get In Touch</h3>
+            </div>
+            <div class="w3l-contact-info">
+                <div class="row contact-infos justify-content-center">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-contact-infos">
+                            <div class="icon-box"> <i class="fas fa-map-marked-alt"></i></div>
+                            <div class="text-box">
+                                <h3 class="mb-2">Our Location</h3>
+                                <p>50 Nanyang Ave, Singapore 639798.</p>
+                                <p>Nanyang Technological University</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
+                        <div class="single-contact-infos">
+                            <div class="icon-box"> <i class="fas fa-mobile-alt"></i></div>
+                            <div class="text-box">
+                                <h3 class="mb-2">Give us a call</h3>
+                                <p><a href="tel:+12 234-45-67-63">+65 9159 4511</a></p>
+                                <p><a href="tel:+12 404-11-22-99">+65 8282 9999</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mt-lg-0 mt-4">
+                        <div class="single-contact-infos">
+                            <div class="icon-box"> <i class="fas fa-envelope-open-text"></i></div>
+                            <div class="text-box">
+                                <h3 class="mb-2">Help Desk</h3>
+                                <p> <a href="mailto:enterpriseApplications@hotmail.com">enterpriseApplications@hotmail.com</a></p>
+                                <p> <a href="mailto:IN6225@support.com">IN6225@support.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- contact map -->
+    <section class="w3l-contact-main" id="contact">
+        <div class="container">
+            <div class="map pt-lg-3">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059445135!2d-74.25986613799748!3d40.69714941774136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m3!3e3!4m0!4m0!5e0!3m2!1sen!2sin!4v1570181661801!5m2!1sen!2sin"
+                    allowfullscreen=""></iframe>
+            </div>
+        </div>
+    </section>
+    <!-- //contact map -->
+
+    <!-- contact-form -->
+    <section class="w3l-contact-main">
+        <div class="contact-infhny py-5">
+            <div class="container py-lg-3">
+                <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:600px;">
+                    <p>Send your Queries</p>
+                    <h3 class="title-style">Drop Us A Line</h3>
+                </div>
+                <div class="top-map">
+                    <div class="map-content-9">
+                        <!-- Floating success / error message -->
+                        <div th:if="${success}" id="toast" class="toast-message success">
+                            <p th:text="${success}"></p>
+                        </div>
+
+                        <div th:if="${error}" id="toast" class="toast-message error">
+                            <p th:text="${error}"></p>
+                        </div>
+
+                        <form action="/contact" method="post">
+                        <div class="form-top">
+                                <div class="form-top-left">
+                                    <input type="text" name="w3lName" id="w3lName" placeholder="Name" required="">
+                                    <input type="number" name="w3lPhone" placeholder="Your phone number" required="">
+                                    <input type="email" name="w3lSender" id="w3lSender" placeholder="Email*"
+                                        required="">
+                                  </div>
+                                <div class="form-top-full">
+                                    <input type="text" name="w3lSubject" id="w3lSubject" placeholder="Subject" required="">
+                                </div>
+                                <div class="form-top-right">
+                                    <textarea name="w3lMessage" id="w3lMessage" placeholder="Message*"
+                                        required=""></textarea>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-style btn-primary">Submit Now</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //contact-form -->
+
+    <!-- footer -->
+    <div th:replace="~{footer :: footer}"></div>
+    <!-- //footer -->
+
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fas fa-level-up-alt" aria-hidden="true"></span>
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- //move top -->
+
+    <!-- common jquery plugin -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <!-- //common jquery plugin -->
+
+    <!-- theme switch js (light and dark)-->
+    <script src="assets/js/theme-change.js"></script>
+    <!-- //theme switch js (light and dark)-->
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!-- bootstrap -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- //bootstrap -->
+    <!-- //Js scripts -->
+</body>
+
+</html>
